@@ -1,0 +1,412 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Center - Visit Rwanda</title>
+    <style>
+        /* Global Resets & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Container (Matches your other pages exactly) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 30px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links .active-page {
+            color: #00A3E0; /* Sky blue brand accent */
+        }
+
+        .search-container {
+            display: flex;
+        }
+
+        .search-container input {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #00A3E0;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #0082b3;
+        }
+
+        /* Featured Media Header Banner */
+        .media-banner {
+            background: #111;
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            border-bottom: 4px solid #00A3E0;
+        }
+
+        .media-banner h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .media-banner p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Core Content Layout Wrapper */
+        .section-container {
+            width: 90vw;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #111;
+            border-left: 5px solid #00A3E0;
+            padding-left: 15px;
+        }
+
+        /* Featured Article Highlight (Hero layout) */
+        .featured-story {
+            display: flex;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .story-img {
+            flex: 1.2;
+            min-height: 300px;
+            background-color: #eee;
+        }
+
+        .story-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story-tag {
+            color: #00A3E0;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .story-content h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .story-content p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            color: #2c3e50;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .read-more:hover {
+            color: #00A3E0;
+        }
+
+        /* News Cards Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-card h3 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .news-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Resource Download Area */
+        .resources-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-box {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 25px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .resource-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .resource-box p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .dl-btn {
+            display: inline-block;
+            background: #00A3E0;
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .dl-btn:hover {
+            background: #0082b3;
+        }
+
+        /* Footer Element */
+        footer {
+            background-color: #222;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 800px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .featured-story {
+                flex-direction: column;
+            }
+            .story-content {
+                padding: 25px;
+            }
+            .media-banner h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">VISIT RWANDA</div>
+        <ul class="nav-links">
+            <li><a href="HOME.html">HOME</a></li>
+            <li><a href="TOURISM.html">TOURISM</a></li>
+            <li><a href="INVESTMENT.html">INVESTMENT</a></li>
+            <li><a href="MEET%20IN%20RWANDA.html">MEET IN RWANDA</a></li>
+            <li><a href="MEDIA.html" class="active-page">MEDIA</a></li>
+            <li><a href="PARTNERSHIP.html">PARTNERSHIP</a></li>
+        </ul>
+        <div class="search-container">
+            <form action="MEDIA.html">
+                <input type="text" placeholder="search press articles...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <header class="media-banner">
+        <h1>Media & Press Room</h1>
+        <p>The latest updates, official press announcements, institutional resource kits, and stories shaping the future of Rwanda.</p>
+    </header>
+
+    <main class="section-container">
+        
+        <h2 class="section-title">Featured Announcement</h2>
+        <div class="featured-story">
+            <div class="story-img">
+                <img src="photo1.png" alt="Featured Story Image">
+            </div>
+            <div class="story-content">
+                <span class="story-tag">Conservation & Tourism</span>
+                <h2>Rwanda Announces Mega Expansion Plans for Volcanoes National Park</h2>
+                <p>A landmark initiative designed to secure additional protected habitat space for endangered mountain gorillas, alongside creating community wealth sharing programs for resident border villages.</p>
+                <a href="#" class="read-more">Read Full Press Release &rarr;</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">Latest Press Releases</h2>
+        <div class="news-grid">
+            
+            <div class="news-card">
+                <div>
+                    <span class="news-date">May 18, 2026</span>
+                    <h3>Kigali Innovation City Attracts Record Digital Capital</h3>
+                    <p>New multi-million dollar tech infrastructure funds have been signed to cement Rwanda's place as a continental startup breeding ground.</p>
+                </div>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+
+            <div class="news-card">
+                <div>
+                    <span class="news-date">April 29, 2026</span>
+                    <h3>Akagera Celebrates Rhino Population Milestone</h3>
+                    <p>An updated census shows exceptional biodiversity stability and growth following coordinated regional anti-poaching initiatives.</p>
+                </div>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+
+            <div class="news-card">
+                <div>
+                    <span class="news-date">March 14, 2026</span>
+                    <h3>New Eco-Luxury Lodges Open Along Lake Kivu Shorelines</h3>
+                    <p>Expanding the western green tourism trail with properties dedicated to clean power, organic sourcing, and minimal carbon impact footprints.</p>
+                </div>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Media Resources</h2>
+        <div class="resources-row">
+            
+            <div class="resource-box">
+                <h4>Brand Assets</h4>
+                <p>Download official high-resolution logos, brand stylebooks, and color guides for editorial use.</p>
+                <a href="#" class="dl-btn">Download Toolkit</a>
+            </div>
+
+            <div class="resource-box">
+                <h4>Image & Video Bank</h4>
+                <p>Access our curated public drive containing royalty-free destination photography and high-def b-roll loops.</p>
+                <a href="#" class="dl-btn">Access Gallery</a>
+            </div>
+
+            <div class="resource-box">
+                <h4>Filming Permits</h4>
+                <p>Are you an international news team or documentary crew? Submit registration paperwork for quick clearance lines.</p>
+                <a href="#" class="dl-btn">Apply Online</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Visit Rwanda Press Office. Dedicated to transparent corporate communication.</p>
+    </footer>
+
+</body>
+</html>

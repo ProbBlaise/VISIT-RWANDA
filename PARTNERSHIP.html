@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnerships - Visit Rwanda</title>
+    <style>
+        /* Global Resets & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Container (Matches all other pages perfectly) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 30px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links .active-page {
+            color: #00A3E0; /* Sky blue brand accent */
+        }
+
+        .search-container {
+            display: flex;
+        }
+
+        .search-container input {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #00A3E0;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #0082b3;
+        }
+
+        /* Partnership Hero Section */
+        .partnership-hero {
+            position: relative;
+            background: linear-gradient(rgba(10, 35, 60, 0.8), rgba(10, 35, 60, 0.8)), url('photo1.png') no-repeat center center/cover;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .partnership-hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .partnership-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        /* Core Content Layout Wrapper */
+        .section-container {
+            width: 90vw;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #111;
+            border-left: 5px solid #00A3E0;
+            padding-left: 15px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 750px;
+        }
+
+        /* Partnership Pillars Layout */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 6px;
+            padding: 35px 25px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            text-align: left;
+        }
+
+        .pillar-icon-label {
+            color: #00A3E0;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .pillar-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Global Partners Showcase Grid */
+        .partners-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 70px;
+        }
+
+        .logo-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+            transition: all 0.3s ease;
+        }
+
+        .logo-box:hover {
+            border-color: #00A3E0;
+            box-shadow: 0 5px 15px rgba(0, 163, 224, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .logo-placeholder {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .logo-type {
+            font-size: 0.75rem;
+            color: #a0aec0;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact/Join Alliance Panel Container */
+        .join-panel {
+            background: #2c3e50;
+            color: white;
+            border-radius: 8px;
+            padding: 50px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .join-text {
+            flex: 1.5;
+        }
+
+        .join-text h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .join-text p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        .join-action {
+            flex: 1;
+            text-align: right;
+        }
+
+        .partner-btn {
+            display: inline-block;
+            background-color: #00A3E0;
+            color: white;
+            text-decoration: none;
+            padding: 14px 35px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .partner-btn:hover {
+            background-color: #0082b3;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Element */
+        footer {
+            background-color: #222;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .partnership-hero h1 {
+                font-size: 2.2rem;
+            }
+            .partnership-hero p {
+                font-size: 1rem;
+            }
+            .join-panel {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .join-action {
+                text-align: center;
+                width: 100%;
+            }
+            .partner-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">VISIT RWANDA</div>
+        <ul class="nav-links">
+            <li><a href="HOME.html">HOME</a></li>
+            <li><a href="TOURISM.html">TOURISM</a></li>
+            <li><a href="INVESTMENT.html">INVESTMENT</a></li>
+            <li><a href="MEET%20IN%20RWANDA.html">MEET IN RWANDA</a></li>
+            <li><a href="MEDIA.html">MEDIA</a></li>
+            <li><a href="PARTNERSHIP.html" class="active-page">PARTNERSHIP</a></li>
+        </ul>
+        <div class="search-container">
+            <form action="PARTNERSHIP.html">
+                <input type="text" placeholder="search alliances...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <header class="partnership-hero">
+        <h1>Strategic Partnerships</h1>
+        <p>Connecting Rwanda to global audiences through powerful alliances in sports, conservation, luxury travel, and creative innovation industries.</p>
+    </header>
+
+    <main class="section-container">
+        
+        <h2 class="section-title">Partnership Frameworks</h2>
+        <p class="section-subtitle">How we collaborate with world-leading organizations to promote sustainable tourism, ecological preservation, and sustainable investment paths.</p>
+
+        <div class="pillars-grid">
+            
+            <div class="pillar-card">
+                <span class="pillar-icon-label">01 / Global Marketing</span>
+                <h3>Sports Partnerships</h3>
+                <p>Leveraging premium global sports platforms to showcase Rwanda's breathtaking travel landscape, welcoming business environment, and rich artistic culture to hundreds of millions of international viewers.</p>
+            </div>
+
+            <div class="pillar-card">
+                <span class="pillar-icon-label">02 / Eco-Preservation</span>
+                <h3>Conservation Alliances</h3>
+                <p>Uniting alongside global NGOs, wildlife organizations, and research bodies to expand critical national park limits, secure species ecosystems, and implement direct local community revenue shares.</p>
+            </div>
+
+            <div class="pillar-card">
+                <span class="pillar-icon-label">03 / Hospitality Track</span>
+                <h3>Luxury Travel Connections</h3>
+                <p>Cooperating with ultra-premium hospitality brands, boutique eco-lodge operators, and international airlines to continually redefine and elevate premium sustainable African travel tracks.</p>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Our Global Partners</h2>
+        <p class="section-subtitle">Proudly working alongside iconic international organizations to create impactful economic pipelines and promote eco-conscious exploration.</p>
+
+        <div class="partners-showcase">
+            
+            <div class="logo-box">
+                <div class="logo-placeholder">ARSENAL FC</div>
+                <div class="logo-type">Official Sports Partner</div>
+            </div>
+
+            <div class="logo-box">
+                <div class="logo-placeholder">PARIS SAINT-GERMAIN</div>
+                <div class="logo-type">Official Football Partner</div>
+            </div>
+
+            <div class="logo-box">
+                <div class="logo-placeholder">BAL / NBA AFRICA</div>
+                <div class="logo-type">Elite Basketball Alliance</div>
+            </div>
+
+            <div class="logo-box">
+                <div class="logo-placeholder">WILDLIFE CONSERVATION</div>
+                <div class="logo-type">Eco Preservation Partner</div>
+            </div>
+
+        </div>
+
+        <div class="join-panel">
+            <div class="join-text">
+                <h2>Become an Official Partner</h2>
+                <p>Are you looking to form a strategic brand alignment, sponsor a major biodiversity initiative, or host a corporate shared value project? Let us discover outstanding opportunities together.</p>
+            </div>
+            <div class="join-action">
+                <a href="mailto:partnerships@visitrwanda.gov" class="partner-btn">Connect With Us</a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Visit Rwanda Global Partnerships Office. Building sustainable pathways for shared success.</p>
+    </footer>
+
+</body>
+</html>

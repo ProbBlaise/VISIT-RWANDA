@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism - Visit Rwanda</title>
+    <style>
+        /* Global Resets & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Container (Matches your Home Page) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 30px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links .active-page {
+            color: #00A3E0; /* Sky blue brand accent */
+        }
+
+        .search-container {
+            display: flex;
+        }
+
+        .search-container input {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #00A3E0;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #0082b3;
+        }
+
+        /* Tourism Hero Header Section */
+        .tourism-hero {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('photo1.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tourism-hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .tourism-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+        }
+
+        /* Core Content Layout Wrapper */
+        .section-container {
+            width: 90vw;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            color: #111;
+            border-left: 5px solid #00A3E0;
+            padding-left: 15px;
+        }
+
+        /* Interactive Destination Grid */
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image-box {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #ddd;
+        }
+
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .destination-card:hover .card-image-box img {
+            transform: scale(1.08);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            color: #00A3E0;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .explore-btn:hover {
+            color: #2c3e50;
+        }
+
+        /* Quick Travel Info Panel Section */
+        .info-panel {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .info-item h4 {
+            font-size: 1.2rem;
+            color: #00A3E0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .info-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Footer Element */
+        footer {
+            background-color: #222;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .tourism-hero h1 {
+                font-size: 2.3rem;
+            }
+            .tourism-hero p {
+                font-size: 1rem;
+            }
+            .info-panel {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">VISIT RWANDA</div>
+        <ul class="nav-links">
+            <li><a href="HOME.html">HOME</a></li>
+            <li><a href="TOURISM.html" class="active-page">TOURISM</a></li>
+            <li><a href="INVESTMENT.html">INVESTMENT</a></li>
+            <li><a href="MEET%20IN%20RWANDA.html">MEET IN RWANDA</a></li>
+            <li><a href="MEDIA.html">MEDIA</a></li>
+            <li><a href="PARTNERSHIP.html">PARTNERSHIP</a></li>
+        </ul>
+        <div class="search-container">
+            <form action="TOURISM.html">
+                <input type="text" placeholder="search tourism...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <header class="tourism-hero">
+        <h1>Experience Remarkable Rwanda</h1>
+        <p>From misty mountain peaks home to majestic mountain gorillas, to untamed vibrant savannahs and rich cultural heritage landscapes.</p>
+    </header>
+
+    <main class="section-container">
+        <h2 class="section-title">Top Destinations</h2>
+        
+        <div class="destination-grid">
+            
+            <div class="destination-card">
+                <div class="card-image-box">
+                    <img src="photo3.png" alt="Volcanoes National Park">
+                </div>
+                <div class="card-content">
+                    <h3>Volcanoes National Park</h3>
+                    <p>Enclosed by stunning dramatic slopes, this sanctuary protects the highly endangered mountain gorillas. A premier world-class tracking expedition experience awaits.</p>
+                    <a href="#" class="explore-btn">Discover More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="card-image-box">
+                    <img src="photo2.png" alt="Nyungwe National Park">
+                </div>
+                <div class="card-content">
+                    <h3>Nyungwe National Park</h3>
+                    <p>One of the oldest ancient rainforests in Africa. Hike up high to experience the legendary canopy walk suspended 70 meters above the rugged forest valley floor.</p>
+                    <a href="#" class="explore-btn">Discover More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="card-image-box">
+                    <img src="photo1.png" alt="Akagera National Park">
+                </div>
+                <div class="card-content">
+                    <h3>Akagera National Park</h3>
+                    <p>Explore beautiful rolling savannah lands, dynamic acacia complexes, and wetland lakes housing Central Africa's incredible Big Five wildlife safaris.</p>
+                    <a href="#" class="explore-btn">Discover More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="card-image-box">
+                    <img src="photo1.png" style="filter: hue-rotate(90deg);" alt="Lake Kivu">
+                </div>
+                <div class="card-content">
+                    <h3>Lake Kivu</h3>
+                    <p>Relax beside beautiful deep blue waters outlined by emerald green terraced tea fields. Perfect for boat cruises, kayaking, and coastal relaxation.</p>
+                    <a href="#" class="explore-btn">Discover More &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Plan Your Trip</h2>
+        <div class="info-panel">
+            <div class="info-item">
+                <h4>When to Visit</h4>
+                <p>Dry seasons run from June to September and December to February—ideal conditions for gorilla trekking experiences.</p>
+            </div>
+            <div class="info-item">
+                <h4>Visa Requirements</h4>
+                <p>Rwanda offers visas on arrival for citizens of all countries worldwide, making travel arrangements simple.</p>
+            </div>
+            <div class="info-item">
+                <h4>Getting Around</h4>
+                <p>Safe, exceptionally clean, well-maintained roads link the capital city of Kigali easily to all major national parks.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Visit Rwanda Tourism. All rights reserved. Designed for remarkable exploration.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,435 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment - Visit Rwanda</title>
+    <style>
+        /* Global Resets & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Container (Matches your Home/Tourism Page) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 30px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links .active-page {
+            color: #00A3E0; /* Sky blue brand accent */
+        }
+
+        .search-container {
+            display: flex;
+        }
+
+        .search-container input {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #00A3E0;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #0082b3;
+        }
+
+        /* Investment Hero Section */
+        .investment-hero {
+            position: relative;
+            background: linear-gradient(rgba(15, 32, 67, 0.75), rgba(15, 32, 67, 0.75)), url('photo2.png') no-repeat center center/cover;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .investment-hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .investment-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #00A3E0;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0082b3;
+            transform: translateY(-2px);
+        }
+
+        /* Core Content Layout Wrapper */
+        .section-container {
+            width: 90vw;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #111;
+            border-left: 5px solid #00A3E0;
+            padding-left: 15px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+
+        /* Statistics / Why Rwanda Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 70px;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .metric-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #00A3E0;
+            margin-bottom: 5px;
+        }
+
+        .metric-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .metric-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Key Sectors Grid */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .sector-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sector-header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 25px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sector-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sector-body p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .sector-highlights {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .sector-highlights li {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .sector-highlights li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #00A3E0;
+            font-weight: bold;
+        }
+
+        /* Call To Action Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #2c3e50 0%, #00A3E0 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 50px 40px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        .cta-banner .cta-button {
+            background-color: white;
+            color: #2c3e50;
+        }
+
+        .cta-banner .cta-button:hover {
+            background-color: #f0f0f0;
+            color: #111;
+        }
+
+        /* Footer Element */
+        footer {
+            background-color: #222;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .investment-hero h1 {
+                font-size: 2.2rem;
+            }
+            .investment-hero p {
+                font-size: 1rem;
+            }
+            .sectors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">VISIT RWANDA</div>
+        <ul class="nav-links">
+            <li><a href="HOME.html">HOME</a></li>
+            <li><a href="TOURISM.html">TOURISM</a></li>
+            <li><a href="INVESTMENT.html" class="active-page">INVESTMENT</a></li>
+            <li><a href="MEET%20IN%20RWANDA.html">MEET IN RWANDA</a></li>
+            <li><a href="MEDIA.html">MEDIA</a></li>
+            <li><a href="PARTNERSHIP.html">PARTNERSHIP</a></li>
+        </ul>
+        <div class="search-container">
+            <form action="INVESTMENT.html">
+                <input type="text" placeholder="search investment...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <header class="investment-hero">
+        <h1>Invest in Rwanda</h1>
+        <p>Africa's leading hub for business, technology, and sustainable growth. Benefit from a rapidly expanding economy, stable governance, and a seamless business setup process.</p>
+        <a href="#explore" class="cta-button">View Key Sectors</a>
+    </header>
+
+    <main class="section-container">
+        <h2 class="section-title">Why Rwanda?</h2>
+        <p class="section-subtitle">Rwanda stands out globally as one of the most streamlined, safe, and transparent places to establish and scale a business in Africa.</p>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number">#2</div>
+                <div class="metric-title">Ease of Doing Business</div>
+                <div class="metric-text">Ranked second in Sub-Saharan Africa for streamlined business setup and corporate governance.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">6h</div>
+                <div class="metric-title">Fast Registration</div>
+                <div class="metric-text">Register and open your fully certified business online in less than six hours with zero bureaucracy.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">100%</div>
+                <div class="metric-title">Foreign Ownership</div>
+                <div class="metric-text">Enjoy complete ownership rights with no mandatory local partner requirements across sectors.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">#1</div>
+                <div class="metric-title">Safety & Transparency</div>
+                <div class="metric-text">Consistently ranked among the safest nations with lowest corruption levels on the African continent.</div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="explore">Key Strategic Sectors</h2>
+        <p class="section-subtitle">Explore high-growth industries backed by progressive policy incentives and robust infrastructure development.</p>
+
+        <div class="sectors-grid">
+            
+            <div class="sector-card">
+                <div class="sector-header">Technology & Innovation</div>
+                <div class="sector-body">
+                    <p>Positioned as the "Proof-of-Concept" hub of Africa. Rwanda provides testing grounds for innovative technologies, e-commerce, and digital finance systems centered around Kigali Innovation City.</p>
+                    <ul class="sector-highlights">
+                        <li>FinTech & digital banking infrastructure</li>
+                        <li>Data centers & cloud computing spaces</li>
+                        <li>Smart city software & drone integration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sector-card">
+                <div class="sector-header">Real Estate & Infrastructure</div>
+                <div class="sector-body">
+                    <p>With rapid urban development and a commitment to green cities, huge opportunities await in residential housing, industrial parks, and high-end commercial infrastructure development projects.</p>
+                    <ul class="sector-highlights">
+                        <li>Eco-friendly commercial complexes</li>
+                        <li>Affordable sustainable urban housing</li>
+                        <li>Special Economic Zone logistics links</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sector-card">
+                <div class="sector-header">Agribusiness & Manufacturing</div>
+                <div class="sector-body">
+                    <p>Transforming traditional farming setups into modern value-add chains. Scale up processing frameworks for high-quality tea, specialty coffee, avocado exports, and light manufacturing.</p>
+                    <ul class="sector-highlights">
+                        <li>Mechanized cold-chain storage links</li>
+                        <li>Specialty tea and coffee processing facilities</li>
+                        <li>Textile and consumer goods manufacturing</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cta-banner">
+            <h2>Ready to grow your enterprise?</h2>
+            <p>Connect with the Rwanda Development Board (RDB) for personalized assistance, tax incentive information, and direct guidance on your next project setup.</p>
+            <a href="#" class="cta-button">Contact Board of Investment</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Visit Rwanda Development Board. Empowering economic growth and innovation.</p>
+    </footer>
+
+</body>
+</html>
