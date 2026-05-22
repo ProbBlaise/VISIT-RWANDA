@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Rwanda | Official Home Master</title>
+    <style>
+        /* ==========================================================================
+           Global Resets & Variables
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-color: #00A3E0;    /* Rwanda Sky Blue */
+            --primary-dark: #0082b3;     /* Hover State Blue */
+            --accent-gold: #E5A93C;      /* Soft African Gold Accent */
+            --dark-bg: #1a1a1a;          /* Clean Slate Black */
+            --light-bg: #fdfdfd;         /* Off-White */
+            --text-main: #2d3436;        /* Charcoal Text */
+            --text-muted: #636e72;       /* Secondary Text */
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           1. Navigation Header
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 4%;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover, .nav-links .active-link {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after, .nav-links .active-link::after {
+            width: 100%;
+        }
+
+        /* Search Container */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 8px 15px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            width: 160px;
+            transition: var(--transition-smooth);
+        }
+
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-container input:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 220px;
+        }
+
+        .search-container button {
+            padding: 8px 18px;
+            font-size: 14px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .search-container button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* ==========================================================================
+           2. Section Headers (General)
+           ========================================================================== */
+        .section-header {
+            max-width: 90vw;
+            margin: 60px auto 25px auto;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--dark-bg);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-header h2::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-gold));
+            border-radius: 2px;
+        }
+
+        /* Clickable Heading Variants */
+        .section-link {
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .section-link h2 {
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .section-link:hover h2 {
+            color: var(--primary-color);
+        }
+
+        /* ==========================================================================
+           3. Side-by-Side Video Content Wrapper
+           ========================================================================== */
+        .content-wrapper {
+            display: flex;
+            width: 90vw;
+            margin: 0 auto 60px auto;
+            gap: 50px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content-wrapper video {
+            flex: 1.2;
+            width: 100%;
+            height: 520px;
+            max-height: 550px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background-color: #000;
+        }
+
+        .video-description {
+            flex: 0.8;
+            padding: 20px;
+        }
+
+        .video-description p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            text-align: justify;
+            position: relative;
+        }
+
+        .video-description p::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: rgba(0, 163, 224, 0.3);
+            border-radius: 2px;
+        }
+
+        /* ==========================================================================
+           4. Pure CSS Split Screen Carousels (Global Framework)
+           ========================================================================== */
+        .split-container {
+            display: flex;
+            width: 100%;
+            height: 600px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            background-color: #0d0d0d;
+        }
+
+        .side {
+            flex: 1;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* --- Image Crossfade Logic --- */
+        .image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: scale(1.08);
+            animation: cssImageSlider 15s infinite ease-in-out;
+        }
+
+        /* Staggered Delay Mapping for all carousels */
+        .side img:nth-child(1) { animation-delay: 0s; }
+        .side img:nth-child(2) { animation-delay: 5s; }
+        .side img:nth-child(3) { animation-delay: 10s; }
+
+        @keyframes cssImageSlider {
+            0%, 5% { opacity: 0; transform: scale(1.08); }
+            10%, 33.33% { opacity: 1; transform: scale(1); z-index: 2; }
+            38.33%, 100% { opacity: 0; transform: scale(1.04); z-index: 1; }
+        }
+
+        .image-side::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);
+            z-index: 3;
+        }
+
+        /* --- Text Crossfade Logic --- */
+        .text-side {
+            padding: 60px;
+        }
+
+        .text-box {
+            position: absolute;
+            width: 80%;
+            max-width: 550px;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-35%);
+            opacity: 0;
+            visibility: hidden;
+            color: white;
+            animation: cssTextSlider 15s infinite ease-in-out;
+        }
+
+        .text-side .text-box:nth-child(1) { animation-delay: 0s; }
+        .text-side .text-box:nth-child(2) { animation-delay: 5s; }
+        .text-side .text-box:nth-child(3) { animation-delay: 10s; }
+
+        @keyframes cssTextSlider {
+            0%, 5% { opacity: 0; visibility: hidden; transform: translateY(-35%); }
+            10%, 33.33% { opacity: 1; visibility: visible; transform: translateY(-50%); z-index: 2; }
+            38.33%, 100% { opacity: 0; visibility: hidden; transform: translateY(-65%); z-index: 1; }
+        }
+
+        .text-box h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .text-box h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin-top: 10px;
+        }
+
+        .text-box p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            font-weight: 300;
+            color: #f1f2f6;
+        }
+
+        /* ==========================================================================
+           Unique Colorful Themes for Each Slide Track
+           ========================================================================== */
+        .tourism-text { background: linear-gradient(135deg, #1e272e 0%, #2c3e50 40%, #00A3E0 100%); }
+        .investment-text { background: linear-gradient(135deg, #111e25 0%, #172a3a 45%, #bfa15f 100%); }
+        .meet-text { background: linear-gradient(135deg, #2d142c 0%, #510a32 50%, #801336 100%); }
+        .media-text { background: linear-gradient(135deg, #100e17 0%, #24142c 45%, #631154 100%); }
+        .partnership-text { background: linear-gradient(135deg, #071e17 0%, #0b3c2c 50%, #328cc1 100%); }
+
+        /* ==========================================================================
+           5. Modern Footer Styling
+           ========================================================================== */
+        .site-footer {
+            background-color: #1a1a1a;
+            color: #888888;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #2d2d2d;
+        }
+
+        /* ==========================================================================
+           6. Responsive Breakpoints
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .navbar { padding: 15px 3%; }
+            .nav-links { gap: 15px; }
+            .content-wrapper { gap: 30px; }
+            .content-wrapper video { height: 420px; }
+            .text-box h2 { font-size: 2.2rem; }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .search-container { width: 100%; justify-content: center; }
+            .search-container input { width: 70%; }
+            .search-container input:focus { width: 75%; }
+
+            .content-wrapper { flex-direction: column; margin-bottom: 50px; }
+            .content-wrapper video { height: auto; max-height: 380px; }
+            .video-description { text-align: center; }
+            .video-description p::before { display: none; }
+            
+            .section-header { text-align: center; }
+            .section-header h2::before { left: 50%; transform: translateX(-50%); }
+
+            .split-container { flex-direction: column; height: auto; }
+            .side { height: 350px; width: 100%; }
+            .text-side { height: 380px; padding: 40px 20px; }
+            .text-box { left: 5%; width: 90%; }
+            
+            @keyframes cssTextSlider {
+                0%, 5% { opacity: 0; visibility: hidden; transform: translateY(-20%); }
+                10%, 33.33% { opacity: 1; visibility: visible; transform: translateY(-50%); z-index: 2; }
+                38.33%, 100% { opacity: 0; visibility: hidden; transform: translateY(-80%); z-index: 1; }
+            }
+
+            .text-box h2 { font-size: 2rem; }
+            .text-box p { font-size: 1.1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .section-header h2 { font-size: 26px; }
+            .side { height: 260px; }
+            .text-side { height: 420px; }
+            .text-box h2 { font-size: 1.6rem; }
+            .text-box p { font-size: 1rem; }
+            .site-footer { font-size: 12px; padding: 20px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="HOME.html" class="logo">VISIT<span>.</span>RWANDA</a>
+        
+        <ul class="nav-links">
+            <li><a href="HOME.html" class="active-link">HOME</a></li>
+            <li><a href="TOURISM.html">TOURISM</a></li>
+            <li><a href="INVESTMENT.html">INVESTMENT</a></li>
+            <li><a href="MEET%20IN%20RWANDA.html">MEET IN RWANDA</a></li>
+            <li><a href="MEDIA.html">MEDIA</a></li>
+            <li><a href="PARTNERSHIP.html">PARTNERSHIP</a></li>
+        </ul>
+
+        <form action="https://www.google.com/search" method="get" target="_blank" class="search-container">
+            <input type="text" name="q" placeholder="Search Rwanda travel..." required>
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+
+    <section class="section-header">
+        <h2>DISCOVERY OF THE BEAUTY OF RWANDA</h2>
+    </section>
+
+    <div class="content-wrapper">
+        <video controls autoplay muted loop>
+            <source src="Visit Rwanda Soon.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="video-description">
+            <p>
+                Rwanda's beauty lies in its striking contrast of dramatic wilderness and peaceful, 
+                orderly communities. The western edge of the country is blessed with the stunning, 
+                deep blue waters of Lake Kivu, bordered by terraced tea plantations that paint the 
+                hillsides an emerald green. In the east, the wide-open savannahs of Akagera National 
+                Park showcase a classic African landscape where lions, rhinos, and elephants roam freely. 
+                Beyond the physical geography, Rwanda's true beauty shines through its commitment to a green, 
+                sustainable future, its exceptionally clean cities, and the joyful resilience of its culture, 
+                celebrated through traditional Intore dance and a deeply rooted spirit of unity (ubumwe).
+            </p>
+        </div>
+    </div>
+
+
+    <a href="TOURISM.html" class="section-link">
+        <section class="section-header">
+            <h2>EXPLORE TOURISM &rarr;</h2>
+        </section>
+    </a>
+
+    <div class="split-container">
+        <div class="side image-side">
+            <img src="photo1.png" alt="Akagera Wilderness Landscape">
+            <img src="photo2.png" alt="Nyungwe Canopy Walkway View">
+            <img src="photo3.png" alt="Mountain Gorillas Protected Habitat">
+        </div>
+
+        <div class="side text-side tourism-text">
+            <div class="text-box">
+                <h2>NATURE</h2>
+                <p>Unlike many typical flat savannas, Akagera features a highly scenic mix of rolling acacia hills, open grasslands, and a sprawling network of lakes and papyrus swamps. It is the largest protected wetland in Central Africa.</p>
+            </div>
+            <div class="text-box">
+                <h2>NYUNGWE NATIONAL PARK</h2>
+                <p>It features a thrilling Canopy Walkway suspended 70 meters above the forest floor, offering stunning panoramic views of the ancient treetops, waterfalls, and rugged mountain terrain.</p>
+            </div>
+            <div class="text-box">
+                <h2>GORILLA PARK</h2>
+                <p>It protects a significant portion of the world's remaining endangered mountain gorillas, offering world-class, highly regulated trekking experiences to encounter habituated gorilla families up close.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="INVESTMENT.html" class="section-link">
+        <section class="section-header">
+            <h2>WHY INVEST IN RWANDA? &rarr;</h2>
+        </section>
+    </a>
+
+    <div class="split-container">
+        <div class="side image-side">
+            <img src="invest1.png" alt="Kigali Innovation City Hub">
+            <img src="invest2.png" alt="Green Energy Infrastructure Project">
+            <img src="invest3.png" alt="Rwanda Special Economic Zone Logistics">
+        </div>
+
+        <div class="side text-side investment-text">
+            <div class="text-box">
+                <h2>TECH & INNOVATION</h2>
+                <p>Positioned as the "ICT Hub of Africa," Rwanda offers robust digital frameworks and incentives for global tech startups, smart city infrastructures, and ventures scaling out across the continent.</p>
+            </div>
+            <div class="text-box">
+                <h2>GREEN ECONOMY</h2>
+                <p>Lead the future with sustainable development. Capitalize on massive opportunities within eco-friendly real estate projects, renewable energy production fields, e-mobility infrastructure, and carbon-neutral manufacturing.</p>
+            </div>
+            <div class="text-box">
+                <h2>EASE OF BUSINESS</h2>
+                <p>Consistently ranked among the top places to do business in Africa. Benefit from 100% foreign ownership options, fast-track company registration within 6 hours, and zero currency control restrictions.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="MEET%20IN%20RWANDA.html" class="section-link">
+        <section class="section-header">
+            <h2>MEET IN RWANDA &rarr;</h2>
+        </section>
+    </a>
+
+    <div class="split-container">
+        <div class="side image-side">
+            <img src="meet1.png" alt="Kigali Convention Centre Exterior Night View">
+            <img src="meet2.png" alt="Intare Conference Arena Modern Hall Setup">
+            <img src="meet3.png" alt="World Class Luxury Hotel Boardrooms Kigali">
+        </div>
+
+        <div class="side text-side meet-text">
+            <div class="text-box">
+                <h2>CONVENTION HUB</h2>
+                <p>Kigali is a leading destination for Meetings, Incentives, Conferences, and Exhibitions (MICE) in Africa. The iconic Kigali Convention Centre handles premier high-profile events seamlessly.</p>
+            </div>
+            <div class="text-box">
+                <h2>MODERN INFRASTRUCTURE</h2>
+                <p>Boasting world-class facilities like the Intare Conference Arena and state-of-the-art indoor arenas, Rwanda provides tech-integrated seating spaces perfect for thousands of global delegates.</p>
+            </div>
+            <div class="text-box">
+                <h2>VISA-FREE TRAVEL</h2>
+                <p>Connecting the globe with open borders. Rwanda offers visa-free entry or visa-on-arrival entry pathways to citizens of all nations worldwide, making event organization remarkably stress-free.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="MEDIA.html" class="section-link">
+        <section class="section-header">
+            <h2>MEDIA & PRESS CENTRE &rarr;</h2>
+        </section>
+    </a>
+
+    <div class="split-container">
+        <div class="side image-side">
+            <img src="media1.png" alt="High Definition Film Production Crew in Rwanda">
+            <img src="media2.png" alt="Press Kit Assets and Creative Media Equipment">
+            <img src="media3.png" alt="Broadcasting Studio Tech Facility Kigali">
+        </div>
+
+        <div class="side text-side media-text">
+            <div class="text-box">
+                <h2>CREATIVE ASSETS</h2>
+                <p>Access high-definition official image databases, promotional b-roll packages, corporate press files, and official multimedia stories covering key milestones around Rwanda.</p>
+            </div>
+            <div class="text-box">
+                <h2>FILMING IN RWANDA</h2>
+                <p>From rich natural ecosystems to sleek skylines, our media office provides streamlined permitting assistance, local crew access, and equipment clearance services for foreign production houses.</p>
+            </div>
+            <div class="text-box">
+                <h2>LATEST NEWS</h2>
+                <p>Stay updated on major national announcements, community developments, conservation achievements, tourism policies, and structural transformation press bulletins live.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="PARTNERSHIP.html" class="section-link">
+        <section class="section-header">
+            <h2>GLOBAL PARTNERSHIPS &rarr;</h2>
+        </section>
+    </a>
+
+    <div class="split-container">
+        <div class="side image-side">
+            <img src="partner1.png" alt="Arsenal Football Club Visit Rwanda Alliance">
+            <img src="partner2.png" alt="Paris Saint Germain PSG Visit Rwanda Banner">
+            <img src="partner3.png" alt="Global Conservation Trust Handshake Summit">
+        </div>
+
+        <div class="side text-side partnership-text">
+            <div class="text-box">
+                <h2>GLOBAL ALLIANCES</h2>
+                <p>Partnered with world-famous sports brands like Arsenal FC and Paris Saint-Germain, the "Visit Rwanda" initiative proudly introduces our rich culture to millions of sport spectators worldwide.</p>
+            </div>
+            <div class="text-box">
+                <h2>CONSERVATION ALLIANCES</h2>
+                <p>Working alongside prominent international organizations like African Parks and the Ellen DeGeneres Campus of the Dian Fossey Gorilla Fund to secure sustainable biodiversity futures.</p>
+            </div>
+            <div class="text-box">
+                <h2>JOIN OUR VISION</h2>
+                <p>Collaborate with us. Whether you are an international corporate identity, sustainable environmental venture, or creative visionary, unlock strategic avenues of growth alongside Rwanda.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        &copy; 2026 Visit Rwanda Tourism. All rights reserved. Designed for remarkable exploration.
+    </footer>
+
+</body>
+</html>
