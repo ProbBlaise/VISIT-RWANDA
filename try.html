@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISIT RWANDA</title>
+    <style>
+        /* Global Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* The Main Navbar Container */
+        .navbar {
+            display: flex;
+            justify-content: space-between; /* Pushes logo to left, links to middle, search to right */
+            align-items: center;           /* Centers everything vertically */
+            background-color: #333;        /* Dark background color */
+            padding: 15px 30px;            /* Padding inside the header */
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;                 /* Ensures navbar stays on top while scrolling */
+        }
+
+        /* Logo styling */
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Links Container */
+        .nav-links {
+            list-style: none;             /* Removes the bullet points */
+            display: flex;                 /* Makes the list items go horizontal */
+            gap: 20px;                     /* Adds space between each link */
+        }
+
+        /* Individual Link Styling */
+        .nav-links a {
+            color: white;
+            text-decoration: none;         /* Removes the underline */
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        /* Change link color when hovering mouse over it */
+        .nav-links a:hover {
+            color: #00A3E0;                /* A nice sky blue accent color */
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            display: flex;
+        }
+
+        .search-container input {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;    /* Rounded corners on the left side */
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #00A3E0;     /* Matches the hover color */
+            color: white;
+            border-radius: 0 4px 4px 0;    /* Rounded corners on the right side */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #0082b3;     /* Slightly darker blue on hover */
+        }
+
+        /* Video Section Intro */
+        .video-section {
+            width: 90vw;                
+            margin: 40px auto 10px auto;  /* Centers the section */
+        }
+
+        /* Heading style */
+        .video-section h2 {
+            font-size: 28px;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* The layout container that puts video and description side-by-side */
+        .content-wrapper {
+            display: flex;
+            width: 90vw;
+            margin: 0 auto 50px auto;
+            gap: 40px;                  /* Adds space between the video and text */
+            align-items: center;        /* Aligns them vertically perfectly */
+            justify-content: space-between;
+        }
+
+        /* Video adjustments - Vertically Expanded */
+        .content-wrapper video {
+            flex: 1.2;                  
+            width: 100%;
+            height: 550px;              /* UPDATED: Increased vertical height */
+            max-height: 600px;          /* UPDATED: Allows breathing room for height */
+            object-fit: cover;          /* UPDATED: Ensures video fills the tall frame smoothly */
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Text box adjustments */
+        .video-description {
+            flex: 0.8;                  /* Gives text slightly less width than video */
+            text-align: left;           
+        }
+
+        /* Paragraph styling for premium look */
+        .video-description p {
+            font-size: 17px;
+            line-height: 1.7;           /* Increases spacing between lines for readability */
+            color: #444;                /* Soft dark grey text color */
+        }
+
+        /* Split screen Slideshow structure (Set to a fixed height section) */
+        .split-container {
+            display: flex;
+            width: 100%;
+            height: 550px;             /* Constrains slideshow container height safely on a scrollable page */
+            margin-top: 50px;
+        }
+
+        .side {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Image Side styling */
+        .image-side {
+            background-color: #000;
+        }
+
+        .image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 1;
+        }
+
+        /* Text Side styling */
+        .text-side {
+            background: linear-gradient(135deg, #2c3e50 0%, #00A3E0 100%); /* Adjusted color palette to fit Visit Rwanda theme */
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* Proper width and absolute centering */
+        .text-box {
+            position: absolute;
+            width: 80%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -30%);
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            z-index: 1;
+        }
+
+        .text-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .text-box p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Active states for transitions */
+        .image-side img.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* Smooth transition to perfect alignment */
+        .text-side .text-box.active {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        /* Responsive adjustment: If screen is small, stack elements vertically */
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            .video-description {
+                text-align: center;
+            }
+            .split-container {
+                flex-direction: column;
+                height: auto;
+            }
+            .side {
+                height: 350px;
+            }
+            .text-side {
+                padding: 60px 20px;
+            }
+            /* Reset positioning for smaller mobile screens so elements stack comfortably */
+            .text-box {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                width: 100%;
+                display: none;
+            }
+            .text-side .text-box.active {
+                display: block;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">VISIT RWANDA</div>
+        <ul class="nav-links">
+            <li><a href="HOME.html">HOME</a></li>
+            <li><a href="TOURISM.html">TOURISM</a></li>
+            <li><a href="INVESTMENT.html">INVESTMENT</a></li>
+            <li><a href="MEET%20IN%20RWANDA.html">MEET IN RWANDA</a></li>
+            <li><a href="MEDIA.html">MEDIA</a></li>
+            <li><a href="PARTNERSHIP.html">PARTNERSHIP</a></li>
+        </ul>
+        <div class="search-container">
+            <form action="HOME.html">
+                <input type="text" placeholder="search...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <section class="video-section">
+        <h2>DISCOVERY OF THE BEAUTY OF RWANDA</h2>
+    </section>
+
+    <div class="content-wrapper">
+        <video controls>
+            <source src="Visit Rwanda Soon.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="video-description">
+            <p>
+                Rwanda's beauty lies in its striking contrast of dramatic wilderness and peaceful, 
+                orderly communities. The western edge of the country is blessed with the stunning, 
+                deep blue waters of Lake Kivu, bordered by terraced tea plantations that paint the 
+                hillsides an emerald green. In the east, the wide-open savannahs of Akagera National 
+                Park showcase a classic African landscape where lions, rhinos, and elephants roam freely. 
+                Beyond the physical geography, Rwanda's true beauty shines through its commitment to a green, 
+                sustainable future, its exceptionally clean cities, and the joyful resilience of its culture, 
+                celebrated through traditional Intore dance and a deeply rooted spirit of unity (ubumwe).
+            </p>
+        </div>
+    </div>
+
+    <div class="split-container">
+        
+        <div class="side image-side">
+            <img class="slide-img active" src="photo1.png" alt="Slide 1">
+            <img class="slide-img" src="photo2.png" alt="Slide 2">
+            <img class="slide-img" src="photo3.png" alt="Slide 3">
+        </div>
+
+        <div class="side text-side">
+            <div class="text-box active">
+                <h2>NATURE</h2>
+                <p>Unlike many typical flat savannas, Akagera features a highly scenic mix of rolling acacia hills, open grasslands, and a sprawling network of lakes and papyrus swamps. It is the largest protected wetland in Central Africa.</p>
+            </div>
+            <div class="text-box">
+                <h2>NYUNGWE NATIONAL PARK</h2>
+                <p>It features a thrilling Canopy Walkway suspended 70 meters above the forest floor, offering stunning panoramic views of the ancient treetops, waterfalls, and rugged mountain terrain.</p>
+            </div>
+            <div class="text-box">
+                <h2>GORILLA PARK</h2>
+                <p>It protects a significant portion of the world's remaining endangered mountain gorillas, offering world-class, highly regulated trekking experiences to encounter habituated gorilla families up close.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.slide-img');
+        const texts = document.querySelectorAll('.text-box');
+        
+        let currentIndex = 0;
+        const slideDuration = 4000; // Change slides every 4 seconds
+
+        function changeSlides() {
+            // Remove 'active' class from current elements
+            images[currentIndex].classList.remove('active');
+            texts[currentIndex].classList.remove('active');
+
+            // Advance index loop
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Keeps slideshow animations running perfectly
+            images[currentIndex].classList.add('active');
+            texts[currentIndex].classList.add('active');
+        }
+
+        setInterval(changeSlides, slideDuration);
+    </script>
+</body>
+</html>
